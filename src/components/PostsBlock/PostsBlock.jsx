@@ -16,7 +16,9 @@ export default function PostsBlock() {
     setfilter(filter);
 
     if (filter === "all") {
-      setfilteredList(postlist);
+      let l = postlist.map((x) => x);
+      console.log("filteredList:", l);
+      setfilteredList(l);
     } else {
       function removeItem(arr) {
         var i = 0;
@@ -30,8 +32,11 @@ export default function PostsBlock() {
         return arr;
       }
 
-      let list = [...postlist];
-      setfilteredList(() => removeItem(list));
+      let list = postlist.map((x) => x);
+
+      let filtered = removeItem(list);
+      console.log("filteredList:", filtered);
+      setfilteredList(filtered);
     }
   }
 
@@ -82,7 +87,7 @@ export default function PostsBlock() {
 
         <div className="cards">
           <div className="large">
-            {filteredList.length &&
+            {filteredList &&
               filteredList.map(function (post, i) {
                 if (i >= 6) {
                   return;
@@ -103,7 +108,7 @@ export default function PostsBlock() {
               })}
           </div>
           <div className="small">
-            {filteredList.length &&
+            {filteredList &&
               filteredList.map(function (post, i) {
                 if (i <= 5 || i >= 9) {
                   return;
