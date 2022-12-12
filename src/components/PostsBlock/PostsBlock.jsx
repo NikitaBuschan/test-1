@@ -6,7 +6,7 @@ import postlist from "../../posts.json";
 
 export default function PostsBlock() {
   const [filter, setfilter] = useState("all");
-  const [filteredList, setfilteredList] = useState(Array.from(postlist));
+  const [filteredList, setfilteredList] = useState();
 
   function truncate(data, len) {
     return data.split(" ").slice(0, len).join(" ") + "...";
@@ -27,6 +27,12 @@ export default function PostsBlock() {
       setfilteredList(Array.from(array));
     }
   }
+
+  useEffect(() => {
+    let array = Array.from(postlist);
+    console.log(array);
+    setfilteredList(array);
+  }, []);
 
   return (
     <SPostsBlock>
