@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  repo: open-interact/InteractWith
+  branch: main # default "master"
+media_folder: "public/images" 
+public_folder: "/images"
+
+collections:
+  - name: "posts" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog Posts" # Used in the UI
+    folder: "posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Read Time", name: "read", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", options: ["community", "products","knowledge"]}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "vacancies" # Used in routes, e.g., /admin/collections/blog
+    label: "Vacancies" # Used in the UI
+    folder: "vacancies" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Category", name: "category", widget: "select", options: ["sales", "software development", "marketing"]}
+      - {label: "Position", name: "position", widget: "string"}      
+      - {label: "Work Location", name: "location", widget: "select", options: ["remote", "on-site", "hybrid"]}
+      - {label: "Time Zone", name: "timezone", widget: "select", options: ["europe", "asia", "amerika"]}
+      - {label: "Employment", name: "employment", widget: "select", options: ["full-time", "part-time"]}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Link", name: "link", widget: "string"}
