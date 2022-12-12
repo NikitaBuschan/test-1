@@ -21,9 +21,11 @@ export default function PostsBlock() {
       setfilteredList(l);
     } else {
       let array = [];
+      let i = 0;
       let l = postlist.map((x) => {
         if (x.category == filter) {
-          array.push({ ...x });
+          array[i] = { ...x };
+          i++;
         }
       });
       console.log(array);
