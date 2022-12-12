@@ -20,10 +20,10 @@ export default function PostsBlock() {
       let array = [];
       postlist.map((post) => {
         if (post.category == filter) {
-          array.push({ ...post });
+          array.push(post);
         }
       });
-      console.log(array);
+      console.log(array[0]);
       setfilteredList(Array.from(array));
     }
   }
