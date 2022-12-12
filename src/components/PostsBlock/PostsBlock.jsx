@@ -20,7 +20,9 @@ export default function PostsBlock() {
     if (filter === "all") {
       setfilteredList(list);
     } else {
-      setfilteredList(list.filter((post) => post.category == filter));
+      let array = list.filter((post) => post.category == filter);
+      console.log(array);
+      setfilteredList(array);
     }
   }
 
@@ -79,9 +81,9 @@ export default function PostsBlock() {
           <div className="large">
             {filteredList &&
               filteredList.map(function (post, i) {
-                if (i >= 6) {
-                  return;
-                }
+                // if (i >= 6) {
+                //   return;
+                // }
                 return (
                   <a href="/" key={i} className="card">
                     <img src={post.thumbnail} alt="" />
@@ -100,9 +102,9 @@ export default function PostsBlock() {
           <div className="small">
             {filteredList &&
               filteredList.map(function (post, i) {
-                if (i <= 5 || i >= 9) {
-                  return;
-                }
+                // if (i <= 5 || i >= 9) {
+                //   return;
+                // }
                 if (filter === "all") {
                   return (
                     <a href="/" key={i} className="card">
