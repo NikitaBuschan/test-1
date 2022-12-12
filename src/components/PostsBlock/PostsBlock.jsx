@@ -17,25 +17,26 @@ export default function PostsBlock() {
 
     if (filter === "all") {
       let l = postlist.map((x) => x);
-      console.log("filteredList:", l);
+      // console.log("filteredList:", l);
       setfilteredList(l);
     } else {
-      function removeItem(arr) {
+      function removeItem(list) {
         var i = 0;
-        while (i < arr.length) {
-          if (arr[i].category !== filter) {
-            arr.splice(i, 1);
+        while (i < list.length) {
+          if (list[i].category != filter) {
+            list.splice(i, 1);
           } else {
             ++i;
           }
         }
-        return arr.map((x) => x);
+        console.log(list);
+        return list;
       }
 
       let list = postlist.map((x) => x);
 
       let filtered = removeItem(list);
-      console.log("filteredList:", filtered);
+      // console.log("filteredList:", filtered);
       setfilteredList(filtered);
     }
   }
