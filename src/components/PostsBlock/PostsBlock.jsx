@@ -6,7 +6,9 @@ import postlist from "../../posts.json";
 
 export default function PostsBlock() {
   const [filter, setfilter] = useState("all");
-  const [filteredList, setfilteredList] = useState(postlist);
+  const [filteredList, setfilteredList] = useState(
+    postlist.map((x) => ({ ...x }))
+  );
 
   function truncate(data, len) {
     return data.split(" ").slice(0, len).join(" ") + "...";
@@ -14,21 +16,15 @@ export default function PostsBlock() {
 
   function handleFiltration(filter) {
     setfilter(filter);
-
     if (filter === "all") {
-      let l = postlist.map((x) => x);
-      // console.log("filteredList:", l);
-      setfilteredList(l);
+      setfilteredList(postlist.map((x) => ({ ...x })));
     } else {
       let array = [];
-      let i = 0;
-      let l = postlist.map((x) => {
+      postlist.map((x) => {
         if (x.category == filter) {
-          array[i] = { ...x };
-          i++;
+          array.push({ ...x });
         }
       });
-      console.log(array);
       setfilteredList(array);
     }
   }
