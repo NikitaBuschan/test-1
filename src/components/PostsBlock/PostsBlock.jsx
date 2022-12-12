@@ -29,7 +29,7 @@ export default function PostsBlock() {
             ++i;
           }
         }
-        return arr;
+        return arr.map((x) => x);
       }
 
       let list = postlist.map((x) => x);
