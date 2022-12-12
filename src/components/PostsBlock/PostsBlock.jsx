@@ -5,11 +5,8 @@ import Markdown from "react-markdown";
 import postlist from "../../posts.json";
 
 export default function PostsBlock() {
-  const [list, setlist] = useState(null);
   const [filter, setfilter] = useState("all");
-  const [filteredList, setfilteredList] = useState(
-    postlist.map((x) => ({ ...x }))
-  );
+  const [filteredList, setfilteredList] = useState(Array.from(postlist));
 
   function truncate(data, len) {
     return data.split(" ").slice(0, len).join(" ") + "...";
@@ -18,19 +15,18 @@ export default function PostsBlock() {
   function handleFiltration(filter) {
     setfilter(filter);
     if (filter === "all") {
-      setfilteredList(list);
+      setfilteredList(Array.from(postlist));
     } else {
-      let array = Array.from(list.filter((post) => post.category == filter));
+      let array = [];
+      postlist.map((post) => {
+        if (post.category == filter) {
+          array.push({ ...post });
+        }
+      });
       console.log(array);
       setfilteredList(Array.from(array));
     }
   }
-
-  useEffect(() => {
-    if (list == null) {
-      setlist(Array.from(postlist));
-    }
-  }, [list]);
 
   return (
     <SPostsBlock>
