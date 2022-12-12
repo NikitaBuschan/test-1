@@ -25,7 +25,7 @@ export default function PostsBlock() {
           array.push({ ...x });
         }
       });
-      setfilteredList(array);
+      setfilteredList(postlist.filter((x) => x.category == filter));
     }
   }
 
