@@ -19,13 +19,9 @@ export default function PostsBlock() {
     if (filter === "all") {
       setfilteredList(postlist.map((x) => ({ ...x })));
     } else {
-      let array = [];
-      postlist.map((x) => {
-        if (x.category == filter) {
-          array.push({ ...x });
-        }
-      });
-      setfilteredList(postlist.filter((x) => x.category == filter));
+      let arr = postlist.filter((post) => post.category == filter);
+      console.log(arr);
+      setfilteredList(arr);
     }
   }
 
