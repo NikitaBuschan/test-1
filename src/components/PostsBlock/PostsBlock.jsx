@@ -6,33 +6,29 @@ import postlist from "../../posts.json";
 
 export default function PostsBlock() {
   const [filter, setfilter] = useState("all");
-  const [filteredList, setfilteredList] = useState();
+  const [fullList, setFullList] = useState(null);
+  const [showlist, setShowList] = useState(null);
+
+  useEffect(() => {
+    if (fullList == null) {
+      setFullList(Array.from(postlist));
+      setShowList(Array.from(postlist));
+    }
+  }, []);
 
   function truncate(data, len) {
     return data.split(" ").slice(0, len).join(" ") + "...";
   }
 
   function handleFiltration(filter) {
-    setfilter(filter);
     if (filter === "all") {
-      setfilteredList(Array.from(postlist));
+      setShowList(fullList);
     } else {
-      let array = Array.from(postlist);
-      let newArray = array.filter((post) => {
-        if (post.category == filter) {
-          return post;
-        }
-      });
-      console.log(newArray);
-      setfilteredList(newArray);
+      setShowList(fullList.filter((post) => post.category == filter));
     }
+
+    setfilter(filter);
   }
-
-  useEffect(() => {
-    let array = Array.from(postlist);
-    setfilteredList(array);
-  }, []);
-
   return (
     <SPostsBlock>
       <div className="wrap">
@@ -80,8 +76,8 @@ export default function PostsBlock() {
 
         <div className="cards">
           <div className="large">
-            {filteredList &&
-              filteredList.map(function (post, i) {
+            {showlist &&
+              showlist.map(function (post, i) {
                 if (i >= 6) {
                   return;
                 }
@@ -101,8 +97,8 @@ export default function PostsBlock() {
               })}
           </div>
           <div className="small">
-            {filteredList &&
-              filteredList.map(function (post, i) {
+            {showlist &&
+              showlist.map(function (post, i) {
                 if (i <= 5 || i >= 9) {
                   return;
                 }
