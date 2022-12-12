@@ -29,15 +29,12 @@ export default function PostsBlock() {
             ++i;
           }
         }
-        console.log(list);
-        return list;
       }
 
       let list = postlist.map((x) => x);
-
-      let filtered = removeItem(list);
+      removeItem(list);
       // console.log("filteredList:", filtered);
-      setfilteredList(filtered);
+      setfilteredList(list);
     }
   }
 
