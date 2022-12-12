@@ -18,8 +18,9 @@ export default function PostsBlock() {
   function handleFiltration(filter) {
     setfilter(filter);
     if (filter === "all") {
-      setfilteredList(postlist.map((x) => ({ ...x })));
+      setfilteredList(list);
     } else {
+      setfilteredList(list.filter((post) => post.category == filter));
     }
   }
 
@@ -29,11 +30,6 @@ export default function PostsBlock() {
     }
   }, [list]);
 
-  let arr1 = [{ a: "1" }, { a: "1" }, { a: "1" }];
-
-  let arr2 = Array.from(arr1);
-
-  console.log(arr2[0]);
   return (
     <SPostsBlock>
       <div className="wrap">
