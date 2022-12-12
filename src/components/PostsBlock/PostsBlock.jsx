@@ -17,20 +17,19 @@ export default function PostsBlock() {
     if (filter === "all") {
       setfilteredList(Array.from(postlist));
     } else {
-      let array = [];
-      postlist.map((post) => {
+      let array = Array.from(postlist);
+      let newArray = array.filter((post) => {
         if (post.category == filter) {
-          array.push(post);
+          return post;
         }
       });
-      console.log(array[0]);
-      setfilteredList(Array.from(array));
+      console.log(newArray);
+      setfilteredList(newArray);
     }
   }
 
   useEffect(() => {
     let array = Array.from(postlist);
-    console.log(array);
     setfilteredList(array);
   }, []);
 
