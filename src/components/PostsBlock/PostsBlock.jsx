@@ -20,21 +20,13 @@ export default function PostsBlock() {
       // console.log("filteredList:", l);
       setfilteredList(l);
     } else {
-      function removeItem(list) {
-        var i = 0;
-        while (i < list.length) {
-          if (list[i].category != filter) {
-            list.splice(i, 1);
-          } else {
-            ++i;
-          }
+      let array = [];
+      let l = postlist.map((x) => {
+        if (x.category == filter) {
+          array.push(x);
         }
-      }
-
-      let list = postlist.map((x) => x);
-      removeItem(list);
-      // console.log("filteredList:", filtered);
-      setfilteredList(list);
+      });
+      setfilteredList(array);
     }
   }
 
