@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import postlist from "../../posts.json";
 
 export default function PostsBlock() {
+  const [list, setlist] = useState(null);
   const [filter, setfilter] = useState("all");
   const [filteredList, setfilteredList] = useState(
     postlist.map((x) => ({ ...x }))
@@ -19,12 +20,20 @@ export default function PostsBlock() {
     if (filter === "all") {
       setfilteredList(postlist.map((x) => ({ ...x })));
     } else {
-      let arr = postlist.filter((post) => post.category == filter);
-      console.log(arr);
-      setfilteredList(arr);
     }
   }
 
+  useEffect(() => {
+    if (list == null) {
+      setlist(Array.from(postlist));
+    }
+  }, [list]);
+
+  let arr1 = [{ a: "1" }, { a: "1" }, { a: "1" }];
+
+  let arr2 = Array.from(arr1);
+
+  console.log(arr2[0]);
   return (
     <SPostsBlock>
       <div className="wrap">
